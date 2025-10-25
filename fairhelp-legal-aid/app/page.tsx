@@ -11,14 +11,14 @@ export default function Home() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border bg-muted px-4 py-2 text-sm">
               <Scale className="h-4 w-4" />
-              <span>Free AI-Powered Legal Aid</span>
+              <span>Free Legal Document Help</span>
             </div>
             <h1 className="mb-6 text-balance text-4xl font-bold tracking-tight md:text-6xl">
               Understand Your Legal Documents in Plain English
             </h1>
             <p className="mb-8 text-pretty text-lg text-muted-foreground md:text-xl">
-              FairHelp uses AI to simplify complex legal documents like eviction notices, contracts, and court papers.
-              Get clear explanations and ask questions in real-time.
+              FairHelp simplifies complex legal documents like eviction notices, contracts, and court papers. Get clear
+              explanations and helpful guidance in real-time.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button size="lg" asChild>
@@ -54,19 +54,18 @@ export default function Home() {
               <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                 <Scale className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="mb-2 text-xl font-semibold">2. AI Simplification</h3>
+              <h3 className="mb-2 text-xl font-semibold">2. Document Analysis</h3>
               <p className="text-muted-foreground">
-                Our AI analyzes your document and translates complex legal jargon into clear, easy-to-understand
-                language.
+                We analyze your document and translate complex legal jargon into clear, easy-to-understand language.
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
               <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                 <MessageSquare className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="mb-2 text-xl font-semibold">3. Ask Questions</h3>
+              <h3 className="mb-2 text-xl font-semibold">3. Get Guidance</h3>
               <p className="text-muted-foreground">
-                Chat with our AI to ask specific questions about your document and get instant, helpful answers.
+                Ask specific questions about your document and get instant, helpful answers to guide your next steps.
               </p>
             </div>
           </div>

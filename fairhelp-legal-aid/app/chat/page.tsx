@@ -24,7 +24,7 @@ export default function ChatPage() {
       id: "welcome",
       role: "assistant",
       content:
-        "Hello! I'm here to help you understand your legal document. Feel free to ask me any questions about what it means, what actions you should take, or anything else you'd like clarified.",
+        "Welcome! Ask any questions about your legal document. I can help clarify what it means, explain your options, and guide you on next steps.",
     },
   ])
   const [input, setInput] = useState("")
@@ -104,8 +104,8 @@ export default function ChatPage() {
 
       <div className="container mx-auto flex flex-1 flex-col px-4 py-8">
         <div className="mb-6">
-          <h1 className="mb-2 text-3xl font-bold">Ask Questions</h1>
-          <p className="text-muted-foreground">Get instant answers about your legal document</p>
+          <h1 className="mb-2 text-3xl font-bold">Document Q&A</h1>
+          <p className="text-muted-foreground">Get answers about your legal document</p>
         </div>
 
         <Card className="flex flex-1 flex-col">

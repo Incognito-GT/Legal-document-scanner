@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { FileText, ArrowLeft, Loader2, AlertCircle } from "lucide-react"
 import { SimplifiedDocument } from "@/components/simplified-document"
+import { DocumentViewer } from "@/components/document-viewer"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
 interface DocumentData {
@@ -43,7 +44,7 @@ export default function AnalyzePage() {
     try {
       setIsAnalyzing(true)
 
-      // Call AI API to simplify the document
+      // Call API to simplify the document
       const response = await fetch("/api/simplify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -106,7 +107,7 @@ export default function AnalyzePage() {
             <div className="flex flex-col items-center justify-center text-center">
               <Loader2 className="mb-4 h-12 w-12 animate-spin text-primary" />
               <h2 className="mb-2 text-xl font-semibold">Analyzing Your Document</h2>
-              <p className="text-muted-foreground">Our AI is reading and simplifying your legal document...</p>
+              <p className="text-muted-foreground">We're reading and simplifying your legal document...</p>
             </div>
           </Card>
         ) : (
@@ -121,12 +122,7 @@ export default function AnalyzePage() {
                   <SimplifiedDocument text={simplifiedText} keyPoints={keyPoints} />
                 </TabsContent>
                 <TabsContent value="original" className="mt-4">
-                  <Card className="p-6">
-                    <p className="text-sm text-muted-foreground">
-                      Original document preview would appear here. In a production app, this would render the actual PDF
-                      or document content.
-                    </p>
-                  </Card>
+                  <DocumentViewer fileName={document.name} fileType={document.type} fileData={document.data} />
                 </TabsContent>
               </Tabs>
             </div>
@@ -150,8 +146,8 @@ export default function AnalyzePage() {
               <Card className="p-6">
                 <h3 className="mb-2 font-semibold">Important Reminder</h3>
                 <p className="text-sm text-muted-foreground">
-                  This is an AI-generated simplification for educational purposes only. Always consult with a qualified
-                  attorney for legal advice specific to your situation.
+                  This is a simplified version for educational purposes only. Always consult with a qualified attorney
+                  for legal advice specific to your situation.
                 </p>
               </Card>
             </div>

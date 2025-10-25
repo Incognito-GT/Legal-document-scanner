@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, Search, Phone, MapPin, Globe, ExternalLink, Scale, Users, FileText } from "lucide-react"
+import { ArrowLeft, Search, Phone, MapPin, Globe, ExternalLink, Scale, FileText } from "lucide-react"
 import Link from "next/link"
 
 const legalAidOrganizations = [
@@ -98,50 +97,46 @@ export default function ResourcesPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 max-w-5xl">
         <div className="mb-8">
-          <h1 className="mb-2 text-4xl font-bold">Legal Resources</h1>
-          <p className="text-lg text-muted-foreground">
+          <h1 className="mb-2 text-3xl font-bold text-foreground">Legal Resources Directory</h1>
+          <p className="text-base text-muted-foreground">
             Find free legal aid, emergency assistance, and self-help resources
           </p>
         </div>
 
         <div className="mb-8">
-          <div className="relative">
+          <div className="relative max-w-xl">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input placeholder="Search resources by location or legal issue..." className="pl-10" />
+            <Input placeholder="Search by location or legal issue..." className="pl-10 bg-background border-border" />
           </div>
         </div>
 
-        <Tabs defaultValue="organizations" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
+        <Tabs defaultValue="organizations" className="space-y-8">
+          <TabsList className="grid w-full grid-cols-3 bg-muted/50">
             <TabsTrigger value="organizations">Legal Aid Organizations</TabsTrigger>
             <TabsTrigger value="emergency">Emergency Help</TabsTrigger>
             <TabsTrigger value="self-help">Self-Help Resources</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="organizations" className="space-y-4">
-            <div className="mb-4">
-              <h2 className="text-2xl font-semibold">Free Legal Aid Organizations</h2>
-              <p className="text-muted-foreground">Organizations providing free legal services to those who qualify</p>
+          <TabsContent value="organizations" className="space-y-6">
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold mb-1">Free Legal Aid Organizations</h2>
+              <p className="text-sm text-muted-foreground">
+                Organizations providing free legal services to those who qualify
+              </p>
             </div>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-6">
               {legalAidOrganizations.map((org, index) => (
-                <Card key={index} className="p-6">
-                  <div className="mb-4 flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                        <Scale className="h-5 w-5 text-primary" />
-                      </div>
-                      <h3 className="text-lg font-semibold">{org.name}</h3>
-                    </div>
-                  </div>
-                  <p className="mb-4 text-sm text-muted-foreground">{org.description}</p>
-                  <div className="space-y-2 text-sm">
+                <div key={index} className="border-b pb-6 last:border-b-0">
+                  <h3 className="text-lg font-semibold mb-2">{org.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{org.description}</p>
+                  <div className="space-y-2 text-sm mb-3">
                     {org.phone && (
                       <div className="flex items-center gap-2">
                         <Phone className="h-4 w-4 text-muted-foreground" />
-                        <a href={`tel:${org.phone}`} className="hover:underline">
+                        <span className="text-muted-foreground">Phone:</span>
+                        <a href={`tel:${org.phone}`} className="text-foreground hover:underline">
                           {org.phone}
                         </a>
                       </div>
@@ -149,114 +144,96 @@ export default function ResourcesPage() {
                     {org.website && (
                       <div className="flex items-center gap-2">
                         <Globe className="h-4 w-4 text-muted-foreground" />
+                        <span className="text-muted-foreground">Website:</span>
                         <a
                           href={org.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1 hover:underline"
+                          className="text-foreground hover:underline inline-flex items-center gap-1"
                         >
-                          Visit Website
+                          {org.website.replace("https://", "")}
                           <ExternalLink className="h-3 w-3" />
                         </a>
                       </div>
                     )}
                   </div>
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs text-muted-foreground">Practice Areas:</span>
                     {org.areas.map((area, i) => (
-                      <span key={i} className="rounded-full bg-muted px-3 py-1 text-xs">
+                      <span key={i} className="text-xs bg-muted px-2 py-1 border">
                         {area}
                       </span>
                     ))}
                   </div>
-                </Card>
+                </div>
               ))}
             </div>
           </TabsContent>
 
-          <TabsContent value="emergency" className="space-y-4">
-            <div className="mb-4">
-              <h2 className="text-2xl font-semibold">Emergency Legal Assistance</h2>
-              <p className="text-muted-foreground">Immediate help for urgent legal situations</p>
+          <TabsContent value="emergency" className="space-y-6">
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold mb-1">Emergency Legal Assistance</h2>
+              <p className="text-sm text-muted-foreground">Immediate help for urgent legal situations</p>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-6">
               {emergencyResources.map((resource, index) => (
-                <Card key={index} className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-destructive/10">
-                      <Phone className="h-6 w-6 text-destructive" />
+                <div key={index} className="border-b pb-6 last:border-b-0">
+                  <h3 className="text-lg font-semibold mb-2">{resource.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{resource.description}</p>
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
+                    <div className="flex items-center gap-2">
+                      <Phone className="h-4 w-4 text-muted-foreground" />
+                      <a
+                        href={`tel:${resource.phone}`}
+                        className="text-base font-semibold text-foreground hover:underline"
+                      >
+                        {resource.phone}
+                      </a>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="mb-1 text-lg font-semibold">{resource.name}</h3>
-                      <p className="mb-3 text-sm text-muted-foreground">{resource.description}</p>
-                      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
-                        <a
-                          href={`tel:${resource.phone}`}
-                          className="text-lg font-semibold text-primary hover:underline"
-                        >
-                          {resource.phone}
-                        </a>
-                        <span className="text-sm text-muted-foreground">{resource.available}</span>
-                      </div>
-                    </div>
+                    <span className="text-sm text-muted-foreground">Available: {resource.available}</span>
                   </div>
-                </Card>
+                </div>
               ))}
             </div>
           </TabsContent>
 
-          <TabsContent value="self-help" className="space-y-4">
-            <div className="mb-4">
-              <h2 className="text-2xl font-semibold">Self-Help Resources</h2>
-              <p className="text-muted-foreground">
+          <TabsContent value="self-help" className="space-y-6">
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold mb-1">Self-Help Resources</h2>
+              <p className="text-sm text-muted-foreground">
                 Educational materials and tools to help you understand your rights
               </p>
             </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {selfHelpResources.map((resource, index) => {
-                const Icon = resource.icon
-                return (
-                  <Card key={index} className="p-6 transition-shadow hover:shadow-md">
-                    <div className="mb-4 flex items-start justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                          <Icon className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold">{resource.title}</h3>
-                          <span className="text-xs text-muted-foreground">{resource.type}</span>
-                        </div>
-                      </div>
+            <div className="space-y-6">
+              {selfHelpResources.map((resource, index) => (
+                <div key={index} className="border-b pb-6 last:border-b-0">
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <h3 className="font-semibold text-base">{resource.title}</h3>
+                      <span className="text-xs text-muted-foreground uppercase tracking-wide">{resource.type}</span>
                     </div>
-                    <p className="mb-4 text-sm text-muted-foreground">{resource.description}</p>
-                    <Button variant="outline" size="sm" className="w-full bg-transparent">
-                      Access Resource
-                      <ExternalLink className="ml-2 h-3 w-3" />
-                    </Button>
-                  </Card>
-                )
-              })}
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3">{resource.description}</p>
+                  <Button variant="outline" size="sm" className="bg-background">
+                    Access Resource
+                    <ExternalLink className="ml-2 h-3 w-3" />
+                  </Button>
+                </div>
+              ))}
             </div>
           </TabsContent>
         </Tabs>
 
-        <Card className="mt-8 border-primary/20 bg-primary/5 p-6">
-          <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-              <Users className="h-6 w-6 text-primary" />
-            </div>
-            <div>
-              <h3 className="mb-2 text-lg font-semibold">Can't Find What You Need?</h3>
-              <p className="mb-4 text-sm text-muted-foreground">
-                If you're unable to find appropriate resources or need personalized assistance, consider reaching out to
-                your local bar association or legal aid office. Many offer free consultations or can refer you to
-                appropriate services.
-              </p>
-              <Button variant="outline" className="bg-background">
-                Find Local Bar Association
-              </Button>
-            </div>
-          </div>
-        </Card>
+        <div className="mt-12 border-t pt-8">
+          <h3 className="text-lg font-semibold mb-2">Need Additional Assistance?</h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            If you're unable to find appropriate resources or need personalized assistance, contact your local bar
+            association or legal aid office. Many offer free consultations or can refer you to appropriate services.
+          </p>
+          <Button variant="outline" className="bg-background">
+            Find Local Bar Association
+          </Button>
+        </div>
       </div>
     </div>
   )
